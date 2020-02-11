@@ -32,6 +32,19 @@ services:
       restart_policy:
         condition: on-failure
 
+  snmp-exporter:
+    image: prom/snmp-exporter
+    #volumes:
+    #  - ./snmp-exporter/:/etc/snmp_exporter/
+    ports:
+      - 9116:9116
+    networks:
+      - monitor-net
+    deploy:
+      mode: global
+      restart_policy:
+          condition: on-failure
+
   node-exporter:
     image: prom/node-exporter
     volumes:
